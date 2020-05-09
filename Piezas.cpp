@@ -133,8 +133,6 @@ Piece Piezas::gameState()
                countX = 0;
            }
        }
-       if(countX == 3)
-           break;
     }
 
     countX = 0;
