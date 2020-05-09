@@ -270,7 +270,7 @@ TEST(PiezasTest, check_gameState_O_wins)
 
     game.dropPiece(2);
     game.dropPiece(1);
-    game.dropPiece(0);
+    game.dropPiece(2);
 
     char piece = (char)game.gameState();
     
