@@ -19,6 +19,70 @@ TEST(PiezasTest, sanityCheck)
 	ASSERT_TRUE(true);
 }
 
+TEST(PiezasTest, check_reset)
+{
+    Piezas game;
+    
+    game.dropPiece(0);
+    game.dropPiece(0);
+    game.dropPiece(0);
+
+    game.dropPiece(1);
+    game.dropPiece(1);
+    game.dropPiece(1);
+
+    game.dropPiece(2);
+    game.dropPiece(2);
+    game.dropPiece(2);
+
+    game.dropPiece(3);
+    game.dropPiece(3);
+    game.dropPiece(3);
+
+    game.reset();
+
+    char piece = (char)game.pieceAt(1, 0);
+    
+    ASSERT_EQ(piece, ' ');
+}
+
+TEST(PiezasTest, check_dropPiece_blank)
+{
+    Piezas game;
+    
+    game.dropPiece(0);
+    game.dropPiece(0);
+    game.dropPiece(0);
+
+    char piece = (char)game.dropPiece(0, 0);
+    
+    ASSERT_EQ(piece, ' ');
+}
+
+TEST(PiezasTest, check_dropPiece_invalid1)
+{
+    Piezas game;
+    
+    game.dropPiece(5);
+
+    char piece = (char)game.dropPiece(0, 0);
+    
+    ASSERT_EQ(piece, '?');
+}
+
+TEST(PiezasTest, check_dropPiece_invalid2)
+{
+    Piezas game;
+    
+    game.dropPiece(0);
+    game.dropPiece(0);
+    game.dropPiece(0);
+
+    char piece = (char)game.dropPiece(2, 0);
+    
+    ASSERT_EQ(piece, ' ');
+}
+
 TEST(PiezasTest, check_dropPiece_X)
 {
     Piezas game;
@@ -37,25 +101,12 @@ TEST(PiezasTest, check_dropPiece_O)
     game.dropPiece(0);
     game.dropPiece(0);
 
-    char piece = (char)game.pieceAt(0, 0);
+    char piece = (char)game.pieceAt(1, 0);
     
     ASSERT_EQ(piece, 'O');
 }
 
-TEST(PiezasTest, check_dropPiece_blank)
-{
-    Piezas game;
-    
-    game.dropPiece(0);
-    game.dropPiece(0);
-    game.dropPiece(0);
-
-    char piece = (char)game.pieceAt(0, 0);
-    
-    ASSERT_EQ(piece, ' ');
-}
-
-TEST(PiezasTest, check_pieceAt_and_dropPiece_valid)
+TEST(PiezasTest, check_pieceAt_valid)
 {
     Piezas game;
     
@@ -66,18 +117,7 @@ TEST(PiezasTest, check_pieceAt_and_dropPiece_valid)
     ASSERT_EQ(piece, 'X');
 }
 
-TEST(PiezasTest, check_pieceAt_and_dropPiece_blank)
-{
-    Piezas game;
-    
-    game.dropPiece(0);
-
-    char piece = (char)game.pieceAt(1, 0);
-    
-    ASSERT_EQ(piece, ' ');
-}
-
-TEST(PiezasTest, check_pieceAt_and_dropPiece_invalid1)
+TEST(PiezasTest, check_pieceAt_invalid1)
 {
     Piezas game;
     
@@ -88,7 +128,7 @@ TEST(PiezasTest, check_pieceAt_and_dropPiece_invalid1)
     ASSERT_EQ(piece, '?');
 }
 
-TEST(PiezasTest, check_pieceAt_and_dropPiece_invalid2)
+TEST(PiezasTest, check_pieceAt_invalid2)
 {
     Piezas game;
     
@@ -98,4 +138,104 @@ TEST(PiezasTest, check_pieceAt_and_dropPiece_invalid2)
     
     ASSERT_EQ(piece, '?');
 }
+
+TEST(PiezasTest, check_pieceAt_blank)
+{
+    Piezas game;
+    
+    game.dropPiece(0);
+
+    char piece = (char)game.pieceAt(1, 0);
+    
+    ASSERT_EQ(piece, ' ');
+}
+
+TEST(PiezasTest, check_gameState_invalid)
+{
+    Piezas game;
+    
+    game.dropPiece(0);
+    game.dropPiece(0);
+    game.dropPiece(0);
+    
+    char piece = (char)game.gameState();
+    
+    ASSERT_EQ(piece, '?');
+}
+
+TEST(PiezasTest, check_gameState_every_other_tie)
+{
+    Piezas game;
+    
+    game.dropPiece(0);
+    game.dropPiece(0);
+    game.dropPiece(0);
+
+    game.dropPiece(1);
+    game.dropPiece(1);
+    game.dropPiece(1);
+
+    game.dropPiece(2);
+    game.dropPiece(2);
+    game.dropPiece(2);
+
+    game.dropPiece(3);
+    game.dropPiece(3);
+    game.dropPiece(3);
+
+    char piece = (char)game.gameState();
+    
+    ASSERT_EQ(piece, ' ');
+}
+
+TEST(PiezasTest, check_gameState_X_vert_O_horiz_tie)
+{
+    Piezas game;
+    
+    game.dropPiece(0);
+    game.dropPiece(2);
+    game.dropPiece(0);
+
+    game.dropPiece(1);
+    game.dropPiece(0);
+    game.dropPiece(2);
+
+    game.dropPiece(2);
+    game.dropPiece(1);
+    game.dropPiece(1);
+
+    game.dropPiece(3);
+    game.dropPiece(3);
+    game.dropPiece(3);
+
+    char piece = (char)game.gameState();
+    
+    ASSERT_EQ(piece, ' ');
+}
+
+TEST(PiezasTest, check_gameState_x_wins)
+{
+    Piezas game;
+    
+    game.dropPiece(0);
+    game.dropPiece(2);
+    game.dropPiece(0);
+
+    game.dropPiece(2);
+    game.dropPiece(0);
+    game.dropPiece(1);
+
+    game.dropPiece(3);
+    game.dropPiece(3);
+    game.dropPiece(1);
+
+    game.dropPiece(1);
+    game.dropPiece(2);
+    game.dropPiece(3);
+
+    char piece = (char)game.gameState();
+    
+    ASSERT_EQ(piece, 'X');
+}
+
 
