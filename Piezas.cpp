@@ -22,8 +22,7 @@
 **/
 Piezas::Piezas()
 {
-    Piece blank_piece = Blank;
-    vector<vector<Pieces> > temp(3, vector<Pieces>(4, blank_piece));
+    vector<vector<Piece> > temp(3, vector<Pieces>(4, Blank));
     board = temp;
     turn = X;
 }
@@ -58,7 +57,7 @@ Piece Piezas::dropPiece(int column)
         return Blank;
     }
 
-    if(!(0 <= column <= 2)) {
+    if(!(0 <= column && column <= 2)) {
         if(turn == X)
             turn = O;
         else 
