@@ -76,7 +76,7 @@ TEST(PiezasTest, check_dropPiece_invalid2)
     game.dropPiece(0);
     game.dropPiece(0);
 
-    char piece = (char)game.dropPiece(0);
+    char piece = (char)game.dropPiece(-1);
     
     ASSERT_EQ(piece, '?');
 }

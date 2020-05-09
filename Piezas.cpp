@@ -51,20 +51,20 @@ void Piezas::reset()
 **/ 
 Piece Piezas::dropPiece(int column)
 {
-    if(board[2][column] != Blank) {
-        if(turn == X)
-            turn = O;
-        else 
-            turn = X;
-        return Blank;
-    }
-
     if(!(0 <= column && column <= 3)) {
         if(turn == X)
             turn = O;
         else 
             turn = X;
         return Invalid;
+    }
+    
+    if(board[2][column] != Blank) {
+        if(turn == X)
+            turn = O;
+        else 
+            turn = X;
+        return Blank;
     }
 
     if(board[0][column] == Blank) 
