@@ -120,7 +120,7 @@ Piece Piezas::gameState()
     }
     
     int countX = 0;
-    vector<int> countRowX(4,0);
+    vector<int> countRowX(3,0);
 
     for(int i=0; i<3; i++) {
         countX=0;
@@ -154,12 +154,12 @@ Piece Piezas::gameState()
     }
     
     int countO = 0;
-    vector<int> countRowO(4,0);
+    vector<int> countRowO(3,0);
 
     for(int i=0; i<3; i++) {
         countO=0;
         for(int j=0; j<4; j++) {
-           if(board[i][j] == X) {
+           if(board[i][j] == O) {
                countO++;
                if(countO > countRowO[i])
                     countRowO[i] = countO;

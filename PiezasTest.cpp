@@ -70,7 +70,7 @@ TEST(PiezasTest, check_dropPiece_blank2)
     game.dropPiece(3);
     game.dropPiece(1);
 
-    char piece = (char)game.dropPiece(0);
+    char piece = (char)game.dropPiece(1);
     
     ASSERT_EQ(piece, ' ');
 }
@@ -274,7 +274,7 @@ TEST(PiezasTest, check_gameState_O_wins)
 
     char piece = (char)game.gameState();
     
-    ASSERT_EQ(piece, 'X');
+    ASSERT_EQ(piece, 'O');
 }
 
 
