@@ -21,7 +21,7 @@ TEST(PiezasTest, sanityCheck)
 
 TEST(PiezasTest, check_dropPiece_X)
 {
-    Pieza game;
+    Piezas game;
     
     game.dropPiece(0);
 
@@ -32,7 +32,7 @@ TEST(PiezasTest, check_dropPiece_X)
 
 TEST(PiezasTest, check_dropPiece_O)
 {
-    Pieza game;
+    Piezas game;
     
     game.dropPiece(0);
     game.dropPiece(0);
@@ -44,7 +44,7 @@ TEST(PiezasTest, check_dropPiece_O)
 
 TEST(PiezasTest, check_dropPiece_blank)
 {
-    Pieza game;
+    Piezas game;
     
     game.dropPiece(0);
     game.dropPiece(0);
@@ -57,7 +57,7 @@ TEST(PiezasTest, check_dropPiece_blank)
 
 TEST(PiezasTest, check_pieceAt_and_dropPiece_valid)
 {
-    Pieza game;
+    Piezas game;
     
     game.dropPiece(0);
 
@@ -68,7 +68,7 @@ TEST(PiezasTest, check_pieceAt_and_dropPiece_valid)
 
 TEST(PiezasTest, check_pieceAt_and_dropPiece_blank)
 {
-    Pieza game;
+    Piezas game;
     
     game.dropPiece(0);
 
@@ -79,7 +79,7 @@ TEST(PiezasTest, check_pieceAt_and_dropPiece_blank)
 
 TEST(PiezasTest, check_pieceAt_and_dropPiece_invalid1)
 {
-    Pieza game;
+    Piezas game;
     
     game.dropPiece(0);
 
@@ -90,7 +90,7 @@ TEST(PiezasTest, check_pieceAt_and_dropPiece_invalid1)
 
 TEST(PiezasTest, check_pieceAt_and_dropPiece_invalid2)
 {
-    Pieza game;
+    Piezas game;
     
     game.dropPiece(0);
 
