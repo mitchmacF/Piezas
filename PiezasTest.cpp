@@ -54,7 +54,7 @@ TEST(PiezasTest, check_dropPiece_blank)
     game.dropPiece(0);
     game.dropPiece(0);
 
-    char piece = (char)game.dropPiece(0, 0);
+    char piece = (char)game.dropPiece(0);
     
     ASSERT_EQ(piece, ' ');
 }
@@ -63,9 +63,7 @@ TEST(PiezasTest, check_dropPiece_invalid1)
 {
     Piezas game;
     
-    game.dropPiece(5);
-
-    char piece = (char)game.dropPiece(0, 0);
+    char piece = (char)game.dropPiece(5);
     
     ASSERT_EQ(piece, '?');
 }
@@ -78,9 +76,9 @@ TEST(PiezasTest, check_dropPiece_invalid2)
     game.dropPiece(0);
     game.dropPiece(0);
 
-    char piece = (char)game.dropPiece(2, 0);
+    char piece = (char)game.dropPiece(0);
     
-    ASSERT_EQ(piece, ' ');
+    ASSERT_EQ(piece, '?');
 }
 
 TEST(PiezasTest, check_dropPiece_X)
