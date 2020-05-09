@@ -22,6 +22,10 @@
 **/
 Piezas::Piezas()
 {
+    Piece blank_piece = Blank;
+    vector<vector<Pieces> > temp(3, vector<Pieces>(4, blank_piece));
+    board = temp;
+    turn = X;
 }
 
 /**
@@ -30,6 +34,10 @@ Piezas::Piezas()
 **/
 void Piezas::reset()
 {
+    Piece blank_piece = Blank;
+    for(auto vec : board) 
+        for(Piece : vec) 
+            Piece = Blank;
 }
 
 /**
@@ -42,7 +50,37 @@ void Piezas::reset()
 **/ 
 Piece Piezas::dropPiece(int column)
 {
-    return Blank;
+    if(board[2][column] != Blank) {
+        if(turn == X)
+            turn = O;
+        else 
+            turn = X;
+        return Blank;
+    }
+
+    if(!(0 <= column <= 2)) {
+        if(turn == X)
+            turn = O;
+        else 
+            turn = X;
+        return Invalid;
+    }
+
+    if(board[0][column] == Blank) 
+        board[0][column] = turn;
+    else if(board[1][column] == Blank) 
+        board[1][column] = turn;
+    else 
+        board[2][column] = turn;
+    
+
+    if(turn == X) {
+        turn = O;
+        return X;
+    } else {
+        turn = X;
+        return O;
+    }
 }
 
 /**
@@ -51,7 +89,7 @@ Piece Piezas::dropPiece(int column)
 **/
 Piece Piezas::pieceAt(int row, int column)
 {
-    return Blank;
+    return board[row][column];
 }
 
 /**
@@ -65,5 +103,115 @@ Piece Piezas::pieceAt(int row, int column)
 **/
 Piece Piezas::gameState()
 {
-    return Blank;
+    bool game_over = true;
+
+    Piece blank_piece = Blank;
+    for(auto vec : board) {
+        for(Piece : vec) {
+            if(Piece == Blank)
+                game_over = false; 
+                break;
+        }
+    }
+
+    if(game_over)
+        return Invalid;
+   
+    int countX = 0;
+    vector<int> countRowX(4,0);
+
+    for(int i=0; i<3; i++) {
+        countX=0;
+        for(int j=0; j<4; j++) {
+           if(board[i][j] == X) {
+               countX++;
+               if(countX > countRowX[i])
+                    countRowX[i] = countX;
+           } else {
+               countX = 0;
+           }
+       }
+       if(countX == 3)
+           break;
+    }
+
+    countX = 0;
+    vector<int> countColX(4,0);
+
+    for(int i=0; i<4; i++) {
+        countX=0;
+        for(int j=0; j<3; j++) {
+           if(board[j][i] == X) {
+               countX++;
+               if(countX > countColX[i])
+                    countColX[i] = countX;
+           } else {
+               countX = 0;
+           }
+       }
+       if(countX == 3)
+           break;
+    }
+    
+    int countO = 0;
+    vector<int> countRowO(4,0);
+
+    for(int i=0; i<3; i++) {
+        countO=0;
+        for(int j=0; j<4; j++) {
+           if(board[i][j] == X) {
+               countO++;
+               if(countO > countRowO[i])
+                    countRowO[i] = countO;
+           } else {
+               countO = 0;
+           }
+       }
+       if(countO == 3)
+           break;
+    }
+
+    countO = 0;
+    vector<int> countColO(4,0);
+
+    for(int i=0; i<4; i++) {
+        countO=0;
+        for(int j=0; j<3; j++) {
+           if(board[j][i] == O) {
+               countO++;
+               if(countO > countColO[i])
+                    countColO[i] = countO;
+           } else {
+               countO = 0;
+           }
+       }
+       if(countO == 3)
+           break;
+    }
+
+    // now countO and countX will signify greatest number of adjacent pieces
+    countO = 0
+    countX = 0;
+
+    for(int i=0; i<(int)countColO.size(); i++) {
+       if(countColO[i] > countO)
+           countO = countColO[i];
+       if(countColX[i] > countX)
+           countX = countColX[i];
+    }
+    
+    for(int i=0; i<(int)countRowO.size(); i++) {
+       if(countRowO[i] > countO)
+           countO = countRowO[i];
+       if(countRowX[i] > countX)
+           countX = countRowX[i];
+    }
+
+    if(countO == countX)
+        return Blank;
+    else if(countO > countX)
+        return O;
+    else
+        return X;
+
 }
