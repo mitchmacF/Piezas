@@ -34,9 +34,11 @@ Piezas::Piezas()
 **/
 void Piezas::reset()
 {
-    for(auto vec : board) 
-        for(Piece : vec) 
-            Piece = Blank;
+    for(int i=0; i<3; i++) {
+        for(int j=0; j<4; j++) {
+            board[i][j] = Blank;
+        }
+    }
 }
 
 /**
@@ -57,7 +59,7 @@ Piece Piezas::dropPiece(int column)
         return Blank;
     }
 
-    if(!(0 <= column && column <= 2)) {
+    if(!(0 <= column && column <= 3)) {
         if(turn == X)
             turn = O;
         else 
@@ -87,7 +89,12 @@ Piece Piezas::dropPiece(int column)
  * are no pieces there, or Invalid if the coordinates are out of bounds
 **/
 Piece Piezas::pieceAt(int row, int column)
-{
+{   
+    if(!(0<=row && row<=3))
+        return Invalid;
+    if(!(0<=column && column<=4))
+        return Invalid;
+
     return board[row][column];
 }
 
@@ -104,17 +111,14 @@ Piece Piezas::gameState()
 {
     bool game_over = true;
 
-    for(auto vec : board) {
-        for(Piece : vec) {
-            if(Piece == Blank)
-                game_over = false; 
-                break;
+    for(int i=0; i<3; i++) {
+        for(int j=0; j<4; j++) {
+            if(board[i][j] == Blank) {
+                return Invalid;
+            }
         }
     }
-
-    if(game_over)
-        return Invalid;
-   
+    
     int countX = 0;
     vector<int> countRowX(4,0);
 
