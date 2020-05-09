@@ -151,8 +151,6 @@ Piece Piezas::gameState()
                countX = 0;
            }
        }
-       if(countX == 3)
-           break;
     }
     
     int countO = 0;
@@ -169,8 +167,6 @@ Piece Piezas::gameState()
                countO = 0;
            }
        }
-       if(countO == 3)
-           break;
     }
 
     countO = 0;
@@ -187,8 +183,6 @@ Piece Piezas::gameState()
                countO = 0;
            }
        }
-       if(countO == 3)
-           break;
     }
 
     // now countO and countX will signify greatest number of adjacent pieces
