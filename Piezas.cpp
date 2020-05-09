@@ -23,7 +23,7 @@ using std::vector;
 **/
 Piezas::Piezas()
 {
-    vector<vector<Piece> > temp(3, vector<Pieces>(4, Blank));
+    vector<vector<Piece> > temp(3, vector<Piece>(4, Blank));
     board = temp;
     turn = X;
 }
@@ -34,7 +34,6 @@ Piezas::Piezas()
 **/
 void Piezas::reset()
 {
-    Piece blank_piece = Blank;
     for(auto vec : board) 
         for(Piece : vec) 
             Piece = Blank;
@@ -105,7 +104,6 @@ Piece Piezas::gameState()
 {
     bool game_over = true;
 
-    Piece blank_piece = Blank;
     for(auto vec : board) {
         for(Piece : vec) {
             if(Piece == Blank)
@@ -190,7 +188,7 @@ Piece Piezas::gameState()
     }
 
     // now countO and countX will signify greatest number of adjacent pieces
-    countO = 0
+    countO = 0;
     countX = 0;
 
     for(int i=0; i<(int)countColO.size(); i++) {
