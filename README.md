@@ -1,6 +1,6 @@
 # Piezas
 
-https://travis-ci.org/mitchmacF/Piezas.svg?branch=master
+[![Build Status](https://travis-ci.org/mitchmacF/Piezas.svg?branch=master)](https://travis-ci.org/mitchmacF/Piezas)
 
 [![Coverage Status](https://coveralls.io/repos/github/mitchmacF/Piezas/badge.svg)](https://coveralls.io/github/mitchmacF/Piezas)
 
